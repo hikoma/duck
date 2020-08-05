@@ -88,7 +88,9 @@ export async function serve(config: DuckConfig, watch = true) {
       immutable: true,
     }) as any
   );
-  server.use(inputsUrlPath, serveStatic(config.inputsRoot) as any);
+  server.use(inputsUrlPath, serveStatic(config.inputsRoot, {
+    maxAge: "1d",
+  }) as any);
 
   // route
   server.get("/", async (request, reply) => {
